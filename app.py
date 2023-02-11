@@ -24,7 +24,7 @@ conn = pymysql.connect(
 #initialize application, as well as declare secret key needed for authentication
 application = Flask(__name__)
 application.config['TEMPLATES_AUTO_RELOAD'] = True
-application.secret_key = ':QA3-ltQ|QUv.>'
+application.secret_key = '***'
 
 
 login_manager = LoginManager()
