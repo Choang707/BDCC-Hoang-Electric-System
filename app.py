@@ -15,7 +15,7 @@ import pymysql
 
 #Database connection to AWS RDS instance
 conn = pymysql.connect(
-    host = '***'
+    host = '***',
     user = '***',
     password = '***',
     db = '***')
@@ -33,8 +33,11 @@ login_manager.init_app(application)
 
 #User class necessary for Flask-Login. UserMixin provides the required methods for Flask-Login
 class User(UserMixin):
-    pass
-    
+    def __init__(self, email):
+        self.id = email
+
+    def is_authenticated(self):
+        return True
     
 
 #User_loader and request_loder methods; returns the appropiate User object
@@ -45,11 +48,10 @@ def load_user(email):
         cur.execute("SELECT * FROM Users WHERE email=%s", (email,))
         row = cur.fetchone()
         if row is not None:
-            user = User()
-            user.id = email
+            user = User(email)
             return user
         else:
-            return
+            return None
         
     except Exception as e:
         print("Database connection failed due to {}".format(e))   
@@ -63,11 +65,10 @@ def request_loader(request):
         cur.execute("SELECT * FROM Users WHERE email=%s", (email,))
         row = cur.fetchone()
         if row is not None:
-            user = User()
-            user.id = email
+            user = User(email)
             return user
         else:
-            return
+            return None
         
     except Exception as e:
         print("Database connection failed due to {}".format(e))   
@@ -91,8 +92,7 @@ def login():
             cur.execute("SELECT * FROM Users WHERE email=%s AND password=%s", (email, password))
             dbUser = cur.fetchone()
             if len(dbUser) != 0:
-                user = User()
-                user.id = email
+                user = User(email)
                 login_user(user)
                 return redirect(url_for('dashboard'))
                 
@@ -121,7 +121,7 @@ def contact():
 @application.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return "You are logged out"
+    return redirect(url_for('/'))
 
 #For all: a home page that shows site info
 @application.route('/', methods=['GET', 'POST'])
