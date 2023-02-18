@@ -8,8 +8,7 @@
 #using Python Flask. It incorporates MySQL and plugins such as Flask-Login. It is hosted on AWS
 #Elastic Beanstalk and uses an RDS database.
 
-from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask import Flask, render_template, request, redirect, url_for, flash, session, g
 from LoginForm import LoginForm
 import pymysql
 
@@ -18,61 +17,15 @@ conn = pymysql.connect(
     host = '***',
     user = '***',
     password = '***',
-    db = '***')
+    db = '***',)
 
 
 #initialize application, as well as declare secret key needed for authentication
 application = Flask(__name__)
 application.config['TEMPLATES_AUTO_RELOAD'] = True
 application.secret_key = '***'
+ 
 
-
-login_manager = LoginManager()
-login_manager.init_app(application)
-
-
-#User class necessary for Flask-Login. UserMixin provides the required methods for Flask-Login
-class User(UserMixin):
-    def __init__(self, email):
-        self.id = email
-
-    def is_authenticated(self):
-        return True
-    
-
-#User_loader and request_loder methods; returns the appropiate User object
-@login_manager.user_loader
-def load_user(email):
-    try:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM Users WHERE email=%s", (email,))
-        row = cur.fetchone()
-        if row is not None:
-            user = User(email)
-            return user
-        else:
-            return None
-        
-    except Exception as e:
-        print("Database connection failed due to {}".format(e))   
-
-@login_manager.request_loader
-def request_loader(request):
-    email = request.form.get('email')
-
-    try:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM Users WHERE email=%s", (email,))
-        row = cur.fetchone()
-        if row is not None:
-            user = User(email)
-            return user
-        else:
-            return None
-        
-    except Exception as e:
-        print("Database connection failed due to {}".format(e))   
-        
 
 #On opening the application, provide a login screen. Get the credentials then validate info
 #Have to fix this sometime, but a fully working login menu is not top priority. Currently gives an error
@@ -80,26 +33,28 @@ def request_loader(request):
 #the password is wrong
 @application.route('/login', methods=['GET', 'POST'])
 def login():
-    
-    form = LoginForm()
 
-    if form.validate_on_submit():
-        email = request.form.get('email')
-        password = request.form.get('password')
+    if request.method == 'POST' and 'password' in request.form and 'email' in request.form:
+        session.pop('user', None)
+
+        email = request.form['email']
+        password = request.form['password']
 
         try:
             cur = conn.cursor()
             cur.execute("SELECT * FROM Users WHERE email=%s AND password=%s", (email, password))
             dbUser = cur.fetchone()
-            if len(dbUser) != 0:
-                user = User(email)
-                login_user(user)
+            if dbUser:
+                session['loggedin'] = True
+                session['user'] = email
                 return redirect(url_for('dashboard'))
+            
+            return redirect(url_for('login'))
                 
         except Exception as e:
             print("Database connection failed due to {}".format(e))   
             
-    return render_template('login.html', form=form)   
+    return render_template('login.html')   
 
 
 #note for pages below: I think a @login_required declarator would be necessary, but it doesn't feel
@@ -110,40 +65,41 @@ def login():
 #For customers: A company about page
 @application.route('/about')
 def about():
-    return render_template('about.html', current_user=current_user)
+    return render_template('about.html')
 
 #For customers: A contact page if a customer has any queries or concerns
 @application.route('/contact')
 def contact():
-    return render_template('contact.html', current_user=current_user)
+    return render_template('contact.html')
 
 #For All: A logout page
 @application.route('/logout', methods=['GET'])
 def logout():
-    logout_user()
-    return redirect(url_for('/'))
+    session.pop('loggedin', None)
+    session.pop('user', None)
+    return redirect(url_for('home'))
 
 #For all: a home page that shows site info
 @application.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html', current_user=current_user)
+    return render_template('index.html')
 
 
 #For users (later defined for different roles) The users's dashboard that is viewed once logged in
-@application.route('/dashboard', methods=['GET', 'POST'])
-@login_required
+@application.route('/dashboard', methods=['GET'])
 def dashboard():
     try:
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM Users WHERE email=%s", (current_user.id,))
-        row = cur.fetchone()
-        if row is None:
-           return
-             
+        if 'loggedin' in session:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM Users WHERE email=%s", (session['user'],))
+            row = cur.fetchone()
+            return render_template('adminIndex.html', data=row)    
+        return redirect(url_for('login'))
+
+
     except Exception as e:
         print("Database connection failed due to {}".format(e))   
 
-    return render_template('adminIndex.html', data=row)
 
 
 
