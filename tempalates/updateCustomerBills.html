@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Customer's Bill</title>
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/static/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/lightbox.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/flexslider.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.rateyo.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="css/jquery.mmenu.all.css" /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/meanmenu.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="/static/inner-page-style.css">
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="page" class="site" itemscope itemtype="http://schema.org/LocalBusiness">
+		<header class="site-header">
+			<div class="top-header">
+				<div class="container">
+					<div class="top-header-left">
+						<div class="top-header-block">
+							<a href="mailto:info@educationpro.com" itemprop="email"><i class="fas fa-envelope"></i> hoangelectric@gmail.com</a>
+						</div>
+						<div class="top-header-block">
+							<a href="tel:+9779813639131" itemprop="telephone"><i class="fas fa-phone"></i> +977 9813639131</a>
+						</div>
+					</div>
+					<div class="top-header-right">
+						<div class="social-block">
+							<ul class="social-list">
+								<li><a href=""><i class="fab fa-viber"></i></a></li>
+								<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+								<li><a href=""><i class="fab fa-facebook-square"></i></a></li>
+								<li><a href=""><i class="fab fa-facebook-messenger"></i></a></li>
+								<li><a href=""><i class="fab fa-twitter"></i></a></li>
+								<li><a href=""><i class="fab fa-skype"></i></a></li>
+							</ul>
+						</div>
+						<div class="login-block">
+							<a href="/logout">Logout</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Top header Close -->
+			<div class="main-header">
+				<div class="container">
+					<div class="logo-wrap" itemprop="logo">
+						<img src="/static/images/site-logo.jpg" alt="Logo Image">
+						<!-- <h1>Education</h1> -->
+					</div>
+					<div class="nav-wrap">
+						<nav class="nav-desktop">
+							<ul class="menu-list">
+								<li><a href="/dashboard">Dashboard</a></li>
+								<li><a href="/manage-customers-bills">Manage a Customer's Bills</li>
+								<li><a href="/manage-customers">Manage Customers</a></li>
+								<li><a href="/manage-employees">Manage Employees</a></li>
+								<li><a href="/profile">User Profile</a></li>
+							</ul>
+						</nav>
+						<div id="bar">
+							<i class="fas fa-bars"></i>
+						</div>
+						<div id="close">
+							<i class="fas fa-times"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- Header Close -->
+
+		<!-- <div class="banner">
+			<div class="owl-five owl-carousel owl-theme">
+	            <div class="item-video">
+            		<iframe width="100%" height="450" src="https://www.youtube.com/embed/ENVW3uZ3a-4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            		</iframe>
+	            </div>
+	            <div class="item-video">
+	            	<iframe width="100%" height="450" src="https://www.youtube.com/embed/0bfk90rWV9U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	            </div>
+	            <div class="item-video">
+	            	<iframe width="100%" height="450" src="https://www.youtube.com/embed/ktvTqknDobU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	            </div>
+	            <div class="item-video">
+            		<iframe width="100%" height="450" src="https://www.youtube.com/embed/ENVW3uZ3a-4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            		</iframe>
+	            </div>
+	            <div class="item-video">
+	            	<iframe width="100%" height="450" src="https://www.youtube.com/embed/0bfk90rWV9U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	            </div>
+	            <div class="item-video">
+	            	<iframe width="100%" height="450" src="https://www.youtube.com/embed/ktvTqknDobU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	            </div>
+          </div>
+		</div> -->
+		<!-- Banner Close -->
+		<div class="page-heading">
+			<div class="container">
+				
+					<!-- data[1] retrives the second element of data from a user row, that being the user's name -->
+					<h2>Update a Customer's Bill Information</h2>
+				
+			</div>
+		</div>
+
+		<section>
+			<div class="container">
+				<form name="editCustomer" method="post">
+					<div class="form-group">
+					  <label for="InputDueDate">Due Date</label>
+					  <input type="text" class="form-control" name ="InputDueDate" id="InputDueDate" aria-describedby="emailHelp" placeholder="Enter Due Date">
+					  <small id="dateHelp" class="form-text text-muted">Please enter in the format YYYY-MM-DD.</small>
+					</div>
+					<div class="form-group">
+						<label for="inputPaid">Is Paid</label>
+						<select id="inputPaid" name="inputPaid" class="form-control">
+						  <option selected>Yes</option>
+						  <option>No</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="InputAmountDue">Amount Due</label>
+						<input type="text" class="form-control" name ="InputAmountDue" id="InputAmountDue" aria-describedby="emailHelp" placeholder="Enter Amount Due">
+						<small id="amountHelp" class="form-text text-muted">Please enter in the format XX.XX with exactly two decimal places.</small>
+					</div>
+					<div class="form-group">
+						<label for="InputElecUsage">Electricity Usage (kWh)</label>
+						<input type="text" class="form-control" name ="InputElecUsage" id="InputElecUsage" aria-describedby="emailHelp" placeholder="Enter Electricty Usage (kWh)">
+						<small id="amountHelp" class="form-text text-muted">Please enter only whole numbers (no decimals).</small>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				  </form>
+			</div>
+		</section>
+
+
+		<!-- Latest News CLosed -->
+		<section class="query-section">
+			<div class="container">
+				<p>Any Queries? Ask us a question at<a href="tel:+9779813639131"><i class="fas fa-phone"></i> +977 9813639131</a></p>
+			</div>
+		</section>
+		<!-- End of Query Section -->
+		<footer class="page-footer" itemprop="footer" itemscope itemtype="http://schema.org/WPFooter">
+			<div class="footer-first-section">
+				<div class="container">
+					<div class="box-wrap" itemprop="about">
+						<header>
+							<h1>about</h1>
+						</header>
+						<p>Hoang Electric aims to help you with handling your electricity, whether it be paying your bills or seeing your recent usage.</p>
+
+						<h4><a href="tel:+9779813639131"><i class="fas fa-phone"></i> +977 9813639131</a></h4>
+						<h4><a href="mailto:info@educationpro.com"><i class="fas fa-envelope"></i> hoangelectric@gmail.com</a></h4>
+						<h4><a href=""><i class="fas fa-map-marker-alt"></i>Los Angeles, California</a></h4>
+					</div>
+
+					<div class="box-wrap">
+						<header>
+							<h1>My Account</h1>
+						</header>
+						<ul>
+							<li><a href="#">Log in</a></li>
+							<li><a href="#">Register</a></li>
+							<li><a href="#">Pay Bills</a></li>
+						</ul>
+					</div>
+
+					<div class="box-wrap">
+						<header>
+							<h1>quick contact</h1>
+						</header>
+						<section class="quick-contact">
+							<input type="email" name="email" placeholder="Your Email*">
+							<textarea placeholder="Type your message*"></textarea>
+							<button>send message</button>
+						</section>
+					</div>
+
+				</div>
+			</div>
+			<!-- End of box-Wrap -->
+			<div class="footer-second-section">
+				<div class="container">
+					<hr class="footer-line">
+					<ul class="social-list">
+						<li><a href=""><i class="fab fa-facebook-square"></i></a></li>
+						<li><a href=""><i class="fab fa-twitter"></i></a></li>
+						<li><a href=""><i class="fab fa-skype"></i></a></li>
+						<li><a href=""><i class="fab fa-youtube"></i></a></li>
+						<li><a href=""><i class="fab fa-instagram"></i></a></li>
+					</ul>
+					<hr class="footer-line">
+				</div>
+			</div>
+			<div class="footer-last-section">
+				<div class="container">
+					<p>Copyright 2022 &copy; CHoangBillSys.com <span> | </span> Theme designed and developed by <a href="https://labtheme.com">Lab Theme</a></p>
+				</div>
+			</div>
+		</footer>
+
+		<!-- <nav id="menu">
+			<ul>
+				<li><a href="#">HOME</a></li>
+				<li>
+					<span>COURSES</span>
+					<ul>
+						<li><a href="#/courses/child">Child</a></li>
+						<li><a href="#/courses/child">Child</a></li>
+						<li>
+							<span>Child</span>
+							<ul>
+								<li><a href="#/courses/child/grandChild">Grand Child</a></li>
+								<li><a href="#/courses/child/grandChild">Grand Child</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">gallery</a>
+					<ul>
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">news</a>
+					<ul>
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+						<li><a href="#">Child</a></li>
+					</ul>
+				</li>
+				<li><a href="#">about</a></li>
+				<li><a href="#">contact</a></li>
+			</ul>
+		</nav> -->
+
+	</div>
+	<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/lightbox.js"></script>
+	<script type="text/javascript" src="/static/js/all.js"></script>
+	<script type="text/javascript" src="/static/js/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="/static/js/owl.carousel.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.flexslider.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.rateyo.js"></script>
+	<!-- <script type="text/javascript" src="js/jquery.mmenu.all.js"></script> -->
+	<!-- <script type="text/javascript" src="js/jquery.meanmenu.min.js"></script> -->
+	<script type="text/javascript" src="/static/js/custom.js"></script>
+</body>
+</html>
